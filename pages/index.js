@@ -3,6 +3,8 @@ import styles from '../styles/Home.module.css';
 import BingMapsReact from "bingmaps-react";
 import React, { useEffect, useState } from "react";
 import dotenv from "dotenv";
+import { mapClickEvent } from "bingmaps-react";
+console.log(mapClickEvent)
 dotenv.config();
 
 export default function Home() {
