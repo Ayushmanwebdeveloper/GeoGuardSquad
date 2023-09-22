@@ -2,6 +2,8 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import BingMapsReact from "bingmaps-react";
 import React, { useEffect, useState } from "react";
+import dotenv from "dotenv";
+dotenv.config();
 
 export default function Home() {
   const [pushPins, setpushPins] = useState([]);
@@ -34,7 +36,7 @@ export default function Home() {
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
-        <BingMapsReact pushPins={pushPins} height="80vh" viewOptions={{center:center,  mapTypeId:'aerial',zoom:19  }} bingMapsKey="Ahk3fi3LFQi_4hawk8I9WMHzQGVMOPLNEJ--axu_4Zlx7ZPwAaUg_k09cKv971Ga" />
+        <BingMapsReact pushPins={pushPins} height="80vh" viewOptions={{ center: center, mapTypeId: 'aerial', zoom: 19 }} bingMapsKey={process.env.NEXT_PUBLIC_API} />
         <p className={styles.description}>
           Get started by editing <code>pages/index.js</code>
         </p>
