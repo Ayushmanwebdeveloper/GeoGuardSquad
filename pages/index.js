@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-import BingMapsReact from "bingmaps-react";
+import BingMapsReact from "../custom-modules/bingmaps-react";
 import React, { useEffect, useState } from "react";
 import dotenv from "dotenv";
 import { mapClickEvent } from "bingmaps-react";
