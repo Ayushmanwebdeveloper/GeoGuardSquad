@@ -7,6 +7,9 @@
   align-items: center;
 }
 
+.main{
+  width: -webkit-fill-available !important;
+}
 .title a {
   color: #0070f3;
   text-decoration: none;

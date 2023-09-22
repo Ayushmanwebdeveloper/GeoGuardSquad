@@ -6,6 +6,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "bingmaps-react": "^1.2.10",
+    "core-js": "^3.32.2",
     "next": "latest",
     "react": "18.2.0",
     "react-dom": "18.2.0"

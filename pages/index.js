@@ -1,7 +1,28 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
+import BingMapsReact from "bingmaps-react";
+import React, { useEffect, useState } from "react";
 
 export default function Home() {
+  const [pushPins, setpushPins] = useState([]);
+  const [center, setCenter] = useState([]);
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      let userCenter = { latitude: position.coords.latitude, longitude: position.coords.longitude };
+      setCenter(userCenter);
+      const pushPin = {
+        center: userCenter,
+        options: {
+          title: "My Location",
+        },
+      };
+      setpushPins(currentList => [...currentList, pushPin]);
+    });
+  }, []);
+  if (pushPins.length === 0) {
+    return <div>Loading...</div>;
+  }
+  
   return (
     <div className={styles.container}>
       <Head>
@@ -9,11 +30,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
+      <main className={styles.main}>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
-
+        <BingMapsReact pushPins={pushPins} height="80vh" viewOptions={{center:center,  mapTypeId:'aerial',zoom:19  }} bingMapsKey="Ahk3fi3LFQi_4hawk8I9WMHzQGVMOPLNEJ--axu_4Zlx7ZPwAaUg_k09cKv971Ga" />
         <p className={styles.description}>
           Get started by editing <code>pages/index.js</code>
         </p>
