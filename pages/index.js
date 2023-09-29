@@ -35,15 +35,21 @@ export default function Home({ incidents }) {
   const [pushPins, setpushPins] = useState([]);
   const [center, setCenter] = useState([]);
   let isdisabled='false';
-    
-    useEffect(() => {
+  const { session, status, update } = useSession();
+  console.log(session);
 
-    const { session, status } = useSession();
-    console.log(session);
+  if (!session) {
+    isdisabled = 'true';
+  }
 
-    if (!session) {
-      isdisabled = 'true';
+  useEffect(() => {
+    if(!session){
+      update();
     }
+  }
+  ,[update]);
+
+    useEffect(() => {
 
     navigator.geolocation.getCurrentPosition(function (position) {
       let userCenter = { latitude: position.coords.latitude, longitude: position.coords.longitude };
