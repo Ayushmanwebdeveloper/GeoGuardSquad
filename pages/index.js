@@ -13,7 +13,13 @@ import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import SendIcon from '@mui/icons-material/Send';
+import clientPromise from '../utils/database'
+import { useSession } from 'next-auth/react'
+import Link from 'next/link';
+import { Alert, AlertTitle } from '@mui/material';
+
 dotenv.config();
+
 const options = [
   {
     value: 'yes',
@@ -25,9 +31,17 @@ const options = [
   }
 ];
 
-export default function Home() {
+export default function Home({ incidents }) {
   const [pushPins, setpushPins] = useState([]);
   const [center, setCenter] = useState([]);
+  const { session, status } = useSession();
+  console.log(session);
+  let isdisabled='false';
+  if(!session){
+    isdisabled='true';
+  }
+    
+  
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function (position) {
       let userCenter = { latitude: position.coords.latitude, longitude: position.coords.longitude };
@@ -41,6 +55,7 @@ export default function Home() {
       setpushPins(currentList => [...currentList, pushPin]);
     });
   }, []);
+
   const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
     clipPath: 'inset(50%)',
@@ -52,9 +67,36 @@ export default function Home() {
     whiteSpace: 'nowrap',
     width: 1,
   });
+
   if (pushPins.length === 0) {
     return <div>Loading...</div>;
   }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    const user={
+      name:session.user.name,
+      email:session.user.email,
+      image:session.user.image,
+    }
+    const incident = {
+      emergency: data.get('emergency-text'),
+      location: data.get('location-text'),
+      additional: data.get('additional-info'),
+      callEmergency: data.get('call-emergency'),
+      callAmbulance: data.get('call-amulance'),
+      seriousness: data.get('seriousness'),
+      user:user
+    }
+    const res = await fetch('/api/createincidents', {
+      body: JSON.stringify(incident),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST'
+    }).then(resp => resp.json());
+  };
   
   return (
     <div className={styles.container}>
@@ -65,7 +107,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Welcome to Geo Guard Squad
         </h1>
         <BingMapsReact pushPins={pushPins} height="80vh" viewOptions={{ center: center, mapTypeId: 'aerial', zoom: 19 }} bingMapsKey={process.env.NEXT_PUBLIC_API} />
         <Box
@@ -75,35 +117,50 @@ export default function Home() {
           }}
           noValidate
           autoComplete="off"
+          onSubmit={handleSubmit}
         >
-       
+
+         {!session && ( 
+            <Alert severity="info" sx={{textAlign:'left', marginTop:2}}>
+              <AlertTitle>You need to be Logged in to Submit an incident</AlertTitle>
+              Click here to login - <strong><Link href={`/api/auth/signin`} >Sign in with Google</Link></strong>
+            </Alert>)}
+
           <TextField
             id="emergency-text"
+            name='emergency-text'
             label="What's the Emergency?"
             multiline
             maxRows={4}
             sx={{ width: '45vw' }}
+            disabled={isdisabled}
           />
           <TextField
             id="location-text"
+            name='location-text'
             label="Where are you?"
             multiline
             maxRows={4}
             sx={{ width: '45vw' }}
+            disabled={isdisabled}
           />
           <br />
           <TextField
             id="additional-info"
+            name='additional-info'
             label="Additional Information"
             multiline
             sx={{ width: '45vw' }}
+            disabled={isdisabled}
           />
           <TextField
             id="call-emergency"
+            name='call-emergency'
             select
             label="Select"
             sx={{ width: '22vw' }}
             helperText="Did you called emergency services?"
+            disabled={isdisabled}
           >
             {options.map((option) => (
               <MenuItem key={option.value} value={option.value}>
@@ -113,10 +170,12 @@ export default function Home() {
           </TextField>
           <TextField
             id="call-amulance"
+            name='call-amulance'
             select
             label="Select"
             sx={{ width: '20vw' }}
             helperText="Do you need an ambulance?"
+            disabled={isdisabled}
           >
             {options.map((option) => (
               <MenuItem key={option.value} value={option.value}>
@@ -131,20 +190,22 @@ export default function Home() {
           <Slider
             aria-label="Seriousness of the emergency ?"
             defaultValue={1}
+            name='seriousness'
             valueLabelDisplay="auto"
             step={1}
             marks
                 sx={{ color: 'success.main'}}
             min={1}
             max={5}
+            disabled={isdisabled}
           />
             </div>
-            <Button component="label" variant="contained" startIcon={<CloudUploadIcon />}>
+            <Button component="label" disabled={isdisabled} variant="contained" startIcon={<CloudUploadIcon />}>
               Upload file
               <VisuallyHiddenInput type="file" />
             </Button>
           </div>
-          <Button variant="contained" endIcon={<SendIcon />} size='large' sx={{marginTop:3}}>
+          <Button variant="contained" disabled={isdisabled} type="submit" endIcon={<SendIcon />} size='large' sx={{marginTop:3}}>
             Submit
           </Button>
         </Box>
@@ -164,7 +225,7 @@ export default function Home() {
 
       <style jsx>{`
         main {
-          padding: 5rem 0;
+          padding: 1rem 0;
           flex: 1;
           display: flex;
           flex-direction: column;
@@ -230,4 +291,21 @@ export default function Home() {
       `}</style>
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  try {
+    const client = await clientPromise;
+    const db = client.db("admin1");
+    const incidents = await db
+      .collection("incidentdata")
+      .find({})
+      .toArray();
+
+    return {
+      props: { incidents: JSON.parse(JSON.stringify(incidents)) },
+    };
+  } catch (e) {
+      console.error(e);
+  }
 }
