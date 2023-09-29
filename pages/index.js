@@ -37,15 +37,12 @@ export default function Home({ incidents }) {
   let isdisabled='false';
   const { session, status, update } = useSession();
   console.log(session);
-
-  if (!session) {
-    isdisabled = 'true';
-  }
-
+ 
   useEffect(() => {
     if(!session){
-      update();
+      isdisabled = 'true';
     }
+    update();
   }
   ,[update]);
 
