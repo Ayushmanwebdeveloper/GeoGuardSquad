@@ -63,8 +63,6 @@ export default function Home({ incidents }) {
       };
       setpushPins(currentList => [...currentList, pushPin, ...dbpushPins]);
     });
-
-    let user = fetch('/api/auth/session').then(resp => resp.json().then(data => setUser(data.user)));
   }, []);
   
   const VisuallyHiddenInput = styled('input')({
@@ -313,6 +311,9 @@ export async function getServerSideProps({ req, res }) {
   try {
     const client = await clientPromise;
     const db = client.db("admin1");
+
+    let user = fetch('/api/auth/session');
+    console.log(user);
     const incidents = await db
       .collection("incidentdata")
       .find({})
