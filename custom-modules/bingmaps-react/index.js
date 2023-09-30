@@ -41,7 +41,7 @@ function BingMapsReact(_ref) {
       console.log(map.entities.get(i));
       var pushpin = map.entities.get(i);
 
-      if (pushpin instanceof Maps.Pushpin) {
+      if (pushpin instanceof Maps.Pushpin && !pushpin.entity.subtitle) {
         map.entities.removeAt(i);
       }
     }
