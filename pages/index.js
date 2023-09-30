@@ -34,13 +34,19 @@ const options = [
   }
 ];
 
-export default function Home({ incidents }) {
+export default function Home({ incidents, user }) {
   const [pushPins, setpushPins] = useState([]);
   const [center, setCenter] = useState([]);
   const [isdisabled, setIsDisabled] = useState(true);
   const [crruser, setUser] = useState(null);
   const uniqueKey = Date.now();
   console.log(incidents);
+  
+  if (user) {
+    console.log(user);
+    setIsDisabled(false);
+    setUser(user);
+  }
   
   useEffect(() => {
       navigator.geolocation.getCurrentPosition(function (position) {
@@ -317,13 +323,12 @@ export async function getServerSideProps({ req, res }) {
       .find({})
       .toArray();
     const session = await getServerSession(req, res, authOptions);
-    console.log(session.user.name);
     res.setHeader(
       'Cache-Control',
       'no-cache, no-store, max-age=0, must-revalidate'
     )
     return {
-      props: { incidents: JSON.parse(JSON.stringify(incidents)) },
+      props: { incidents: JSON.parse(JSON.stringify(incidents)), user: JSON.parse(JSON.stringify(session.user)) },
     };
   } catch (e) {
       console.error(e);
