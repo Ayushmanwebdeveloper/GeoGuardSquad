@@ -67,6 +67,7 @@ export default function Home({ incidents }) {
     });
   }, []);
   
+  
   const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
     clipPath: 'inset(50%)',

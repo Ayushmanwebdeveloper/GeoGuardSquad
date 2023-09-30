@@ -8,7 +8,7 @@ export default async function handler(req, res) {
     let newDocument = req.body;
     newDocument.date = new Date();
     let result = await collection.insertOne(newDocument);
-    res.send(result).status(204);
+    res.status(204).send(result);
     }
     catch (e) {
         console.error(e);
