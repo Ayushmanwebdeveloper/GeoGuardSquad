@@ -37,9 +37,13 @@ export default function Home({ incidents }) {
   const [center, setCenter] = useState([]);
   const [isdisabled, setIsDisabled] = useState(true);
   const [crruser, setUser] = useState(null);
-  let session;
   const uniqueKey = Date.now();
   console.log(incidents);
+  const { data: session, status } = useSession()
+
+  if (status === "authenticated") {
+    return <p>Signed in as {session.user.email}</p>
+  }
 
 
     useEffect(() => {
@@ -64,20 +68,7 @@ export default function Home({ incidents }) {
       };
       setpushPins(currentList => [...currentList, pushPin, ...dbpushPins]);
     });
-      const checkSession = async () => {
-        session = await getSession();
-        console.log(session);
-        if (session?.user?.name) {
-          setIsDisabled(false);
-          setUser(session.user);
-        } else {
-          setIsDisabled(true);
-        }
-      };
-
-      checkSession();
   }, []);
-  
   
   const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
