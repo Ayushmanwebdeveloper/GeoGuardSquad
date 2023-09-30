@@ -1,11 +1,9 @@
 import { useEffect } from 'react';
-import { useRouter } from 'next/router';
 
 function RedirectPage() {
-    const router = useRouter();
 
     useEffect(() => {
-        router.push('/');
+        window.location.href = '/map';
     }, []);
 
     return null;
