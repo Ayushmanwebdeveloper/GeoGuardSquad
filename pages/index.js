@@ -330,7 +330,7 @@ export async function getServerSideProps({ req, res }) {
 
     res.setHeader(
       'Cache-Control',
-      'no-store, max-age=0, must-revalidate, no-cache'
+      'no-cache, no-store, max-age=0, must-revalidate'
     )
     return {
       props: { incidents: JSON.parse(JSON.stringify(incidents)) },
