@@ -151,7 +151,7 @@ export default function Home({ incidents }) {
          {isdisabled && ( 
             <Alert severity="info" sx={{textAlign:'left', marginTop:2}}>
               <AlertTitle>You need to be Logged in to Submit an incident</AlertTitle>
-              <button onClick={() => signIn('google')}>Sign in with Google</button>
+              <button onClick={() => signIn('google',{ callbackUrl: "/app" })}>Sign in with Google</button>
               Click here to login - <strong><Link target='_blank' href={`/api/auth/signin`} >Sign in with Google</Link></strong>
             </Alert>)}
 
