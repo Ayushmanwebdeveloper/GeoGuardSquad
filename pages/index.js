@@ -38,6 +38,7 @@ export default function Home({ incidents }) {
   const session = useSession();
 
   useEffect(() => {
+    console.log(session);
     if (session) {
       setIsDisabled(false); 
     } else {
