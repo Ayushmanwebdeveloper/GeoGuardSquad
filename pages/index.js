@@ -62,6 +62,7 @@ export default function Home({ incidents }) {
           center: incident?.pushPin?.center,
           options: {
             title: incident?.pushPin?.options?.title,
+            subtitle: 'Incident',
           },
         }
       }
