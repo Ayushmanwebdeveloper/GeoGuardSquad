@@ -328,7 +328,7 @@ export async function getServerSideProps({ req, res }) {
       'no-cache, no-store, max-age=0, must-revalidate'
     )
     return {
-      props: { incidents: JSON.parse(JSON.stringify(incidents)), user: JSON.parse(JSON.stringify(session.user)) },
+      props: { incidents: JSON.parse(JSON.stringify(incidents)), user: JSON.parse(JSON.stringify(session?.user)) },
     };
   } catch (e) {
       console.error(e);
