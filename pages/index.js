@@ -17,12 +17,6 @@ import clientPromise from '../utils/database'
 import { useSession, getSession } from 'next-auth/react'
 import Link from 'next/link';
 import { Alert, AlertTitle } from '@mui/material';
-import dynamic from 'next/dynamic';
-import Cookies from 'js-cookie';
-
-const DynamicMap = dynamic(() => import('../custom-modules/bingmaps-react'), {
-  ssr: false,
-});
 
 dotenv.config();
 
@@ -57,11 +51,9 @@ export default function Home({ incidents }) {
     };
 
     checkSession();
-    Cookies.remove('bing.com');
   }, [session]);
 
     useEffect(() => {
-      Cookies.remove('bing.com');
       navigator.geolocation.getCurrentPosition(function (position) {
       let userCenter = { latitude: position.coords.latitude, longitude: position.coords.longitude };
       setCenter(userCenter);
@@ -157,7 +149,7 @@ export default function Home({ incidents }) {
          {isdisabled && ( 
             <Alert severity="info" sx={{textAlign:'left', marginTop:2}}>
               <AlertTitle>You need to be Logged in to Submit an incident</AlertTitle>
-              Click here to login - <strong><Link href={`/api/auth/signin`} >Sign in with Google</Link></strong>
+              Click here to login - <strong><Link target='_blank' href={`/api/auth/signin`} >Sign in with Google</Link></strong>
             </Alert>)}
 
           <TextField
