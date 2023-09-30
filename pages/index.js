@@ -17,6 +17,7 @@ import clientPromise from '../utils/database'
 import { useSession, getSession } from 'next-auth/react'
 import Link from 'next/link';
 import { Alert, AlertTitle } from '@mui/material';
+import { signIn } from "next-auth/react"
 
 dotenv.config();
 
@@ -150,6 +151,7 @@ export default function Home({ incidents }) {
          {isdisabled && ( 
             <Alert severity="info" sx={{textAlign:'left', marginTop:2}}>
               <AlertTitle>You need to be Logged in to Submit an incident</AlertTitle>
+              <button onClick={() => signIn('google')}>Sign in with Google</button>
               Click here to login - <strong><Link target='_blank' href={`/api/auth/signin`} >Sign in with Google</Link></strong>
             </Alert>)}
 
