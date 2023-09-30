@@ -17,6 +17,7 @@ import clientPromise from '../utils/database'
 import { useSession, getSession } from 'next-auth/react'
 import Link from 'next/link';
 import { Alert, AlertTitle } from '@mui/material';
+import dynamic from 'next/dynamic';
 
 dotenv.config();
 
@@ -30,6 +31,8 @@ const options = [
     label: 'No',
   }
 ];
+
+const DynamicBingMap = dynamic(() => import('../custom-modules/bingmaps-react'), {});
 
 export default function Home({ incidents }) {
   const [pushPins, setpushPins] = useState([]);
@@ -135,6 +138,7 @@ export default function Home({ incidents }) {
         <h1 className={styles.title}>
           Welcome to Geo Guard Squad
         </h1>
+        <DynamicBingMap pushPins={pushPins} height="80vh" viewOptions={{ center: center, mapTypeId: 'aerial', zoom: 19 }} bingMapsKey={process.env.NEXT_PUBLIC_API} />
         <BingMapsReact pushPins={pushPins} height="80vh" viewOptions={{ center: center, mapTypeId: 'aerial', zoom: 19 }} bingMapsKey={process.env.NEXT_PUBLIC_API} />
         <Box
           component="form"
