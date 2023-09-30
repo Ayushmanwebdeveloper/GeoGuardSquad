@@ -37,21 +37,6 @@ export default function Home({ incidents }) {
   const [isdisabled, setIsDisabled] = useState(true);
   const session = useSession();
 
-
-    useEffect(() => {
-      navigator.geolocation.getCurrentPosition(function (position) {
-      let userCenter = { latitude: position.coords.latitude, longitude: position.coords.longitude };
-      setCenter(userCenter);
-      const pushPin = {
-        center: userCenter,
-        options: {
-          title: "My Location",
-        },
-      };
-      setpushPins(currentList => [...currentList, pushPin]);
-    });
-  }, []);
-
   useEffect(() => {
     const checkSession = async () => {
       const session = await getSession();
@@ -65,6 +50,20 @@ export default function Home({ incidents }) {
 
     checkSession();
   }, [session]);
+  
+    useEffect(() => {
+      navigator.geolocation.getCurrentPosition(function (position) {
+      let userCenter = { latitude: position.coords.latitude, longitude: position.coords.longitude };
+      setCenter(userCenter);
+      const pushPin = {
+        center: userCenter,
+        options: {
+          title: "My Location",
+        },
+      };
+      setpushPins(currentList => [...currentList, pushPin]);
+    });
+  }, []);
   
   const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
