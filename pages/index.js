@@ -66,21 +66,8 @@ export default function Home({ incidents }) {
     });
   }, []);
   
-  useEffect(() => {
-    const checkSession = async () => {
-      session = await getSession();
-      console.log(session);
-      if (session?.user?.name) {
-        setIsDisabled(false);
-        setUser(session.user);
-      } else {
-        setIsDisabled(true);
-      }
-    };
 
-    checkSession();
-  }, []);
-  
+
   const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
     clipPath: 'inset(50%)',
