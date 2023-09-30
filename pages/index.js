@@ -18,6 +18,7 @@ import { useSession, getSession } from 'next-auth/react'
 import Link from 'next/link';
 import { Alert, AlertTitle } from '@mui/material';
 import { signIn } from "next-auth/react"
+import { set } from 'core-js/core/dict';
 
 dotenv.config();
 
@@ -40,9 +41,10 @@ export default function Home({ incidents }) {
   const uniqueKey = Date.now();
   console.log(incidents);
   const { data: session, status } = useSession();
-
-
-    useEffect(() => {
+  setUser(session?.user);
+  setIsDisabled(!session?.user);
+  
+  useEffect(() => {
       navigator.geolocation.getCurrentPosition(function (position) {
       let userCenter = { latitude: position.coords.latitude, longitude: position.coords.longitude };
       setCenter(userCenter);
