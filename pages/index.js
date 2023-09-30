@@ -35,6 +35,7 @@ export default function Home({ incidents }) {
   const [pushPins, setpushPins] = useState([]);
   const [center, setCenter] = useState([]);
   const [isdisabled, setIsDisabled] = useState(true);
+  const [crruser, setUser] = useState(null);
   let session;
 
   useEffect(() => {
@@ -43,6 +44,7 @@ export default function Home({ incidents }) {
       console.log(session);
       if (session?.user?.name) {
         setIsDisabled(false);
+        setUser(session.user);
       } else {
         setIsDisabled(true);
       }
@@ -84,11 +86,6 @@ export default function Home({ incidents }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
-    const user={
-      name:session.user.name,
-      email:session.user.email,
-      image:session.user.image,
-    }
     const incident = {
       emergency: data.get('emergency-text'),
       location: data.get('location-text'),
@@ -96,7 +93,7 @@ export default function Home({ incidents }) {
       callEmergency: data.get('call-emergency'),
       callAmbulance: data.get('call-amulance'),
       seriousness: data.get('seriousness'),
-      user:user
+      user:crruser
     }
     const res = await fetch('/api/createincidents', {
       body: JSON.stringify(incident),
