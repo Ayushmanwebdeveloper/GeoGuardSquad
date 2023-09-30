@@ -67,7 +67,7 @@ export default function Home({ incidents }) {
     });
   }, []);
   
-  
+
   const VisuallyHiddenInput = styled('input')({
     clip: 'rect(0 0 0 0)',
     clipPath: 'inset(50%)',
@@ -83,7 +83,7 @@ export default function Home({ incidents }) {
   if (pushPins.length === 0) {
     return <div>Loading...</div>;
   }
-
+  console.log(sessionStorage.getItem('latitude'));
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
@@ -94,8 +94,14 @@ export default function Home({ incidents }) {
       callEmergency: data.get('call-emergency'),
       callAmbulance: data.get('call-amulance'),
       seriousness: data.get('seriousness'),
-      user:crruser
-    }
+      user:crruser,
+      pushPin: {
+        center: { latitude: parseFloat(sessionStorage.getItem('latitude')), longitude: parseFloat(sessionStorage.getItem('longitude')) },
+        options: {
+          title: incident.location,
+        },
+      },
+   }
     const res = await fetch('/api/createincidents', {
       body: JSON.stringify(incident),
       headers: {
