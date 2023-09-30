@@ -5,10 +5,12 @@ module.exports = {
             headers: [
                 {
                     key: 'Cache-Control',
-                    value: 'no-store',
+                    value: 'no-store'
+                },
+                {
                     key: 'Clear-Site-Data',
                     value: '*',
-                },
+                }
             ],
         },
     ],
