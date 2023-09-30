@@ -35,13 +35,13 @@ export default function Home({ incidents }) {
   const [pushPins, setpushPins] = useState([]);
   const [center, setCenter] = useState([]);
   const [isdisabled, setIsDisabled] = useState(true);
-  const session = useSession();
+  let session;
 
   useEffect(() => {
     const checkSession = async () => {
-      const session = await getSession();
+      session = await getSession();
       console.log(session);
-      if (session.user.name) {
+      if (session?.user?.name) {
         setIsDisabled(false);
       } else {
         setIsDisabled(true);
@@ -50,7 +50,7 @@ export default function Home({ incidents }) {
 
     checkSession();
   }, [session]);
-  
+
     useEffect(() => {
       navigator.geolocation.getCurrentPosition(function (position) {
       let userCenter = { latitude: position.coords.latitude, longitude: position.coords.longitude };
