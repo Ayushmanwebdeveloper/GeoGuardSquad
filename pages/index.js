@@ -37,7 +37,7 @@ export default function Home({ incidents }) {
   const [isdisabled, setIsDisabled] = useState(true);
   const [crruser, setUser] = useState(null);
   let session;
-
+  console.log(incidents);
   useEffect(() => {
     const checkSession = async () => {
       session = await getSession();
