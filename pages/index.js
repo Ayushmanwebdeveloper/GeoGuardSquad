@@ -133,7 +133,7 @@ export default function Home({ incidents, user }) {
         <Box
           component="form"
           sx={{
-            '& .MuiTextField-root': { m: 2 }, textAlign: 'center', borderRadius: 2, border: '1px solid #eaeaea', p: 2, boxShadow: 1, bgcolor: 'background.paper',
+            '& .MuiTextField-root': { m: 2 }, textAlign: 'center', borderRadius: 2, border: '1px solid #eaeaea', p: 1, boxShadow: 1, bgcolor: 'background.paper',
           }}
           noValidate
           autoComplete="off"
