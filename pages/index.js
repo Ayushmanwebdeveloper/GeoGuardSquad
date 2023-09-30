@@ -41,7 +41,7 @@ export default function Home({ incidents }) {
     const checkSession = async () => {
       const session = await getSession();
       console.log(session);
-      if (session) {
+      if (session.data) {
         setIsDisabled(false);
       } else {
         setIsDisabled(true);
