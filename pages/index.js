@@ -34,17 +34,13 @@ const options = [
 export default function Home({ incidents }) {
   const [pushPins, setpushPins] = useState([]);
   const [center, setCenter] = useState([]);
-  let isdisabled='false';
-  const { session, status, update } = useSession();
+  let isdisabled=false;
+  const { session, status } = useSession();
   console.log(session);
  
-  useEffect(() => {
     if(!session){
-      isdisabled = 'true';
+      isdisabled = true;
     }
-    update();
-  }
-  ,[update]);
 
     useEffect(() => {
 
