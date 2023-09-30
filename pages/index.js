@@ -40,8 +40,10 @@ export default function Home({ incidents }) {
   const uniqueKey = Date.now();
   console.log(incidents);
   const { data: session, status } = useSession();
-  setUser(session?.user);
-  setIsDisabled(!session?.user);
+if(session){
+  setIsDisabled(false);
+  setUser(session.user);
+}
   
   useEffect(() => {
       navigator.geolocation.getCurrentPosition(function (position) {
