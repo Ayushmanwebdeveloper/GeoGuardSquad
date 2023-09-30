@@ -38,6 +38,7 @@ function BingMapsReact(_ref) {
 
   function removePushpins(map, Maps) {
     for (var i = map.entities.getLength() - 1; i >= 0; i--) {
+      console.log(map.entities.get(i));
       var pushpin = map.entities.get(i);
 
       if (pushpin instanceof Maps.Pushpin) {
