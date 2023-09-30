@@ -95,13 +95,15 @@ export default function Home({ incidents }) {
       callAmbulance: data.get('call-amulance'),
       seriousness: data.get('seriousness'),
       user:crruser,
-      pushPin: {
+   }
+    
+    incident = {
+      ...incident, pushPin: {
         center: { latitude: parseFloat(sessionStorage.getItem('latitude')), longitude: parseFloat(sessionStorage.getItem('longitude')) },
         options: {
           title: incident.location,
         },
-      },
-   }
+      } }
     const res = await fetch('/api/createincidents', {
       body: JSON.stringify(incident),
       headers: {
