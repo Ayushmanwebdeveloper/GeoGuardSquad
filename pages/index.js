@@ -18,6 +18,8 @@ import { useSession, getSession } from 'next-auth/react'
 import Link from 'next/link';
 import { Alert, AlertTitle } from '@mui/material';
 import dynamic from 'next/dynamic';
+import Cookies from 'js-cookie';
+
 const DynamicMap = dynamic(() => import('../custom-modules/bingmaps-react'), {
   ssr: false,
 });
@@ -55,9 +57,11 @@ export default function Home({ incidents }) {
     };
 
     checkSession();
+    Cookies.remove('bing.com');
   }, [session]);
 
     useEffect(() => {
+      Cookies.remove('bing.com');
       navigator.geolocation.getCurrentPosition(function (position) {
       let userCenter = { latitude: position.coords.latitude, longitude: position.coords.longitude };
       setCenter(userCenter);
