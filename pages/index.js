@@ -252,6 +252,10 @@ export default function Home({ incidents, user }) {
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          background: #525252;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #3d72b4, #525252);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #3d72b4, #525252); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
         }
         footer {
           width: 100%;
