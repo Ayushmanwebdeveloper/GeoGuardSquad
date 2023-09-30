@@ -14,7 +14,7 @@ import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import SendIcon from '@mui/icons-material/Send';
 import clientPromise from '../utils/database'
-import { useSession } from 'next-auth/react'
+import { useSession, getSession } from 'next-auth/react'
 import Link from 'next/link';
 import { Alert, AlertTitle } from '@mui/material';
 
