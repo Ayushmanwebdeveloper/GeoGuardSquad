@@ -37,8 +37,8 @@ const options = [
 export default function Home({ incidents, user }) {
   const [pushPins, setpushPins] = useState([]);
   const [center, setCenter] = useState([]);
-  const isdisabled= true;
-  const crruser = null;
+  let isdisabled= true;
+  let crruser = null;
   const uniqueKey = Date.now();
   console.log(incidents);
 
