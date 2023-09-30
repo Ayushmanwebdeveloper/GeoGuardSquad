@@ -37,6 +37,7 @@ export default function Home({ incidents }) {
   const [isdisabled, setIsDisabled] = useState(true);
   const [crruser, setUser] = useState(null);
   let session;
+  const uniqueKey = Date.now();
   console.log(incidents);
   useEffect(() => {
     const checkSession = async () => {
@@ -135,7 +136,7 @@ export default function Home({ incidents }) {
         <h1 className={styles.title}>
           Welcome to Geo Guard Squad
         </h1>
-        <BingMapsReact pushPins={pushPins} height="80vh" viewOptions={{ center: center, mapTypeId: 'aerial', zoom: 19 }} bingMapsKey={process.env.NEXT_PUBLIC_API} />
+        <BingMapsReact key={uniqueKey} pushPins={pushPins} height="80vh" viewOptions={{ center: center, mapTypeId: 'aerial', zoom: 19 }} bingMapsKey={process.env.NEXT_PUBLIC_API} />
         <Box
           component="form"
           sx={{
