@@ -41,11 +41,9 @@ export default function Home({ incidents, user }) {
   const [crruser, setUser] = useState(null);
   const uniqueKey = Date.now();
   console.log(incidents);
-  
+
   if (user) {
     console.log(user);
-    setIsDisabled(false);
-    setUser(user);
   }
   
   useEffect(() => {
