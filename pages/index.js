@@ -42,7 +42,7 @@ export default function Home({ incidents }) {
   const { data: session, status } = useSession()
 
   if (status === "authenticated") {
-    return <p>Signed in as {session.user.email}</p>
+    console.log(session.user);
   }
 
 
