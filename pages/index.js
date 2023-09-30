@@ -311,9 +311,6 @@ export async function getServerSideProps({ req, res }) {
   try {
     const client = await clientPromise;
     const db = client.db("admin1");
-
-    let user = fetch('/api/auth/session');
-    console.log(user);
     const incidents = await db
       .collection("incidentdata")
       .find({})
