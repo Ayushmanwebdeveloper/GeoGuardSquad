@@ -1,7 +1,7 @@
 module.exports = {
+    generateEtags: false,
     headers: () => [
         {
-            generateEtags: false,
             source: '/',
             headers: [
                 {
@@ -15,7 +15,6 @@ module.exports = {
             ],
         },
         {
-            generateEtags: false,
             source: '*',
             headers: [
                 {
