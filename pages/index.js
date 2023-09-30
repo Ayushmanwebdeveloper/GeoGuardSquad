@@ -38,12 +38,17 @@ export default function Home({ incidents }) {
   const session = useSession();
 
   useEffect(() => {
-    console.log(session);
-    if (session) {
-      setIsDisabled(false); 
-    } else {
-      setIsDisabled(true);
-    }
+    const checkSession = async () => {
+      const session = await getSession();
+      console.log(session);
+      if (session) {
+        setIsDisabled(false);
+      } else {
+        setIsDisabled(true);
+      }
+    };
+
+    checkSession();
   }, [session]);
 
     useEffect(() => {
