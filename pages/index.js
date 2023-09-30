@@ -327,6 +327,11 @@ export async function getServerSideProps({ req, res }) {
       'Cache-Control',
       'no-cache, no-store, max-age=0, must-revalidate'
     )
+    if(!session){
+      return {
+        props: { incidents: JSON.parse(JSON.stringify(incidents)), user: null },
+      };
+    }
     return {
       props: { incidents: JSON.parse(JSON.stringify(incidents)), user: JSON.parse(JSON.stringify(session?.user)) },
     };
