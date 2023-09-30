@@ -19,7 +19,7 @@ import { getServerSession } from "next-auth/next"
 import Link from 'next/link';
 import { Alert, AlertTitle } from '@mui/material';
 import { signIn } from "next-auth/react"
-import { authOptions } from 'pages/api/auth/[...nextauth]'
+import { authOptions } from '/pages/api/auth/[...nextauth]'
 
 dotenv.config();
 
