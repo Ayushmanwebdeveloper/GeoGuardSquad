@@ -18,7 +18,6 @@ import { useSession, getSession } from 'next-auth/react'
 import Link from 'next/link';
 import { Alert, AlertTitle } from '@mui/material';
 import { signIn } from "next-auth/react"
-import { set } from 'core-js/core/dict';
 
 dotenv.config();
 
