@@ -16,7 +16,6 @@ import SendIcon from '@mui/icons-material/Send';
 import clientPromise from '../utils/database'
 import { useSession, getSession } from 'next-auth/react'
 import Link from 'next/link';
-import { useRouter } from 'next/router'
 import { Alert, AlertTitle } from '@mui/material';
 
 dotenv.config();
@@ -39,7 +38,6 @@ export default function Home({ incidents }) {
   const [crruser, setUser] = useState(null);
   let session;
   console.log(incidents);
-  const router = useRouter()
   useEffect(() => {
     const checkSession = async () => {
       session = await getSession();
@@ -56,7 +54,6 @@ export default function Home({ incidents }) {
   }, [session]);
 
     useEffect(() => {
-      router.reload(window.location.pathname)
       navigator.geolocation.getCurrentPosition(function (position) {
       let userCenter = { latitude: position.coords.latitude, longitude: position.coords.longitude };
       setCenter(userCenter);
