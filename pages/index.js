@@ -39,8 +39,7 @@ export default function Home({ incidents }) {
 
 
     useEffect(() => {
-
-    navigator.geolocation.getCurrentPosition(function (position) {
+      navigator.geolocation.getCurrentPosition(function (position) {
       let userCenter = { latitude: position.coords.latitude, longitude: position.coords.longitude };
       setCenter(userCenter);
       const pushPin = {
