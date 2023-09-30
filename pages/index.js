@@ -139,7 +139,7 @@ export default function Home({ incidents }) {
           Welcome to Geo Guard Squad
         </h1>
         <DynamicBingMap pushPins={pushPins} height="80vh" viewOptions={{ center: center, mapTypeId: 'aerial', zoom: 19 }} bingMapsKey={process.env.NEXT_PUBLIC_API} />
-        <BingMapsReact pushPins={pushPins} height="80vh" viewOptions={{ center: center, mapTypeId: 'aerial', zoom: 19 }} bingMapsKey={process.env.NEXT_PUBLIC_API} />
+        
         <Box
           component="form"
           sx={{
