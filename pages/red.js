@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 function RedirectPage() {
 
     useEffect(() => {
-        window.location.href = '/map';
+        window.location.href = '/red';
     }, []);
 
     return null;
