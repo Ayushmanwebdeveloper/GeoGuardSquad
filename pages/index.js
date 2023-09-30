@@ -57,13 +57,22 @@ export default function Home({ incidents }) {
       navigator.geolocation.getCurrentPosition(function (position) {
       let userCenter = { latitude: position.coords.latitude, longitude: position.coords.longitude };
       setCenter(userCenter);
+      let dbpushPins = incidents.map(incident => {
+        return {
+          center: incident.pushPin.center,
+          options: {
+            title: incident.pushPin.options.title,
+          },
+        }
+      }
+      );
       const pushPin = {
         center: userCenter,
         options: {
           title: "My Location",
         },
       };
-      setpushPins(currentList => [...currentList, pushPin]);
+      setpushPins(currentList => [...currentList, pushPin, ...dbpushPins]);
     });
   }, []);
   
