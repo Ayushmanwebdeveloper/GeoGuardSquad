@@ -17,7 +17,6 @@ import clientPromise from '../utils/database'
 import { useSession, getSession } from 'next-auth/react'
 import Link from 'next/link';
 import { Alert, AlertTitle } from '@mui/material';
-import dynamic from 'next/dynamic';
 
 dotenv.config();
 
@@ -32,9 +31,255 @@ const options = [
   }
 ];
 
-const DynamicBingMap = dynamic(() => import('../custom-modules/bingmaps-react'), {});
-
-export default function Home({ incidents }) {
+export default function Home({ incidents = [
+  {
+    "_id": "65180e69179130fbac9da1e4",
+    "emergency": "fire",
+    "location": "here",
+    "additional": "blabla",
+    "callEmergency": "no",
+    "callAmbulance": "no",
+    "seriousness": "3",
+    "user": {
+      "name": "Ayushman Tripathi",
+      "email": "ayushmantripathi7724@gmail.com",
+      "image": "https://lh3.googleusercontent.com/a/ACg8ocIfJQpehGhk43jQoDo1vNu3C0_7JNH2b9YTH_mNzInkxUw=s96-c"
+    },
+    "pushPin": {
+      "center": {
+        "latitude": 33.40394894771813,
+        "longitude": 75.94025224441957
+      },
+      "options": {
+        "title": "here"
+      }
+    },
+    "date": "2023-09-30T12:02:49.370Z"
+  },
+  {
+    "_id": "65180f4e179130fbac9da1e5",
+    "emergency": "thief",
+    "location": "here",
+    "additional": "blabla",
+    "callEmergency": "no",
+    "callAmbulance": "no",
+    "seriousness": "4",
+    "user": {
+      "name": "Ayushman Tripathi",
+      "email": "ayushmantripathi7724@gmail.com",
+      "image": "https://lh3.googleusercontent.com/a/ACg8ocIfJQpehGhk43jQoDo1vNu3C0_7JNH2b9YTH_mNzInkxUw=s96-c"
+    },
+    "pushPin": {
+      "center": {
+        "latitude": 33.40394894771813,
+        "longitude": 75.94025224441957
+      },
+      "options": {
+        "title": "here"
+      }
+    },
+    "date": "2023-09-30T12:06:38.910Z"
+  },
+  {
+    "_id": "65181bd539daa09d2e6eee47",
+    "emergency": "fire",
+    "location": "here",
+    "additional": "abcd",
+    "callEmergency": "yes",
+    "callAmbulance": "no",
+    "seriousness": "3",
+    "user": {
+      "name": "Ayushman Tripathi",
+      "email": "ayushmantripathi7724@gmail.com",
+      "image": "https://lh3.googleusercontent.com/a/ACg8ocIfJQpehGhk43jQoDo1vNu3C0_7JNH2b9YTH_mNzInkxUw=s96-c"
+    },
+    "pushPin": {
+      "center": {
+        "latitude": 32.9449961946453,
+        "longitude": 74.95301989534819
+      },
+      "options": {
+        "title": "here"
+      }
+    },
+    "date": "2023-09-30T13:00:05.195Z"
+  },
+  {
+    "_id": "651825943ada84cf09e907d5",
+    "emergency": "Gas Leak",
+    "location": "Fox Street",
+    "additional": "Nitrogen Gas",
+    "callEmergency": "no",
+    "callAmbulance": "yes",
+    "seriousness": "3",
+    "user": {
+      "name": "Ayushman Tripathi",
+      "email": "ayushmantripathi7724@gmail.com",
+      "image": "https://lh3.googleusercontent.com/a/ACg8ocIfJQpehGhk43jQoDo1vNu3C0_7JNH2b9YTH_mNzInkxUw=s96-c"
+    },
+    "pushPin": {
+      "center": {
+        "latitude": 23.279136834027923,
+        "longitude": 77.40601892351495
+      },
+      "options": {
+        "title": "Fox Street",
+        "subTitle": "Gas Leak"
+      }
+    },
+    "date": "2023-09-30T13:41:40.427Z"
+  },
+  {
+    "_id": "651827f83ada84cf09e907d6",
+    "emergency": "snowfall",
+    "location": "switzz street",
+    "additional": "",
+    "callEmergency": "no",
+    "callAmbulance": "yes",
+    "seriousness": "4",
+    "user": {
+      "name": "Ayushman Tripathi",
+      "email": "ayushmantripathi7724@gmail.com",
+      "image": "https://lh3.googleusercontent.com/a/ACg8ocIfJQpehGhk43jQoDo1vNu3C0_7JNH2b9YTH_mNzInkxUw=s96-c"
+    },
+    "pushPin": {
+      "center": {
+        "latitude": 51.54220200628688,
+        "longitude": 10.70895271959654
+      },
+      "options": {
+        "title": "switzz street",
+        "subTitle": "snowfall"
+      }
+    },
+    "date": "2023-09-30T13:51:52.142Z"
+  },
+  {
+    "_id": "651828033ada84cf09e907d7",
+    "emergency": "fire",
+    "location": "switzz street",
+    "additional": "",
+    "callEmergency": "no",
+    "callAmbulance": "yes",
+    "seriousness": "4",
+    "user": {
+      "name": "Ayushman Tripathi",
+      "email": "ayushmantripathi7724@gmail.com",
+      "image": "https://lh3.googleusercontent.com/a/ACg8ocIfJQpehGhk43jQoDo1vNu3C0_7JNH2b9YTH_mNzInkxUw=s96-c"
+    },
+    "pushPin": {
+      "center": {
+        "latitude": 51.26804864035678,
+        "longitude": 19.232339114848138
+      },
+      "options": {
+        "title": "switzz street",
+        "subTitle": "fire"
+      }
+    },
+    "date": "2023-09-30T13:52:03.767Z"
+  },
+  {
+    "_id": "6518281b3ada84cf09e907d8",
+    "emergency": "Climate Change",
+    "location": "switzz street",
+    "additional": "",
+    "callEmergency": "no",
+    "callAmbulance": "yes",
+    "seriousness": "2",
+    "user": {
+      "name": "Ayushman Tripathi",
+      "email": "ayushmantripathi7724@gmail.com",
+      "image": "https://lh3.googleusercontent.com/a/ACg8ocIfJQpehGhk43jQoDo1vNu3C0_7JNH2b9YTH_mNzInkxUw=s96-c"
+    },
+    "pushPin": {
+      "center": {
+        "latitude": 56.197767956168256,
+        "longitude": -2.998761483076131
+      },
+      "options": {
+        "title": "switzz street",
+        "subTitle": "Climate Change"
+      }
+    },
+    "date": "2023-09-30T13:52:27.597Z"
+  },
+  {
+    "_id": "651835e82a4a6a9265a53411",
+    "emergency": "hey",
+    "location": "my home",
+    "additional": "lol",
+    "callEmergency": "no",
+    "callAmbulance": "no",
+    "seriousness": "2",
+    "user": {
+      "name": "Daliah",
+      "email": "malihdalia@gmail.com",
+      "image": "https://lh3.googleusercontent.com/a/ACg8ocKuCZa_A0kp79mWEy0zEX-ow_Nd8zzt2s7DGGQVlwXF1cY=s96-c"
+    },
+    "pushPin": {
+      "center": {
+        "latitude": null,
+        "longitude": null
+      },
+      "options": {
+        "title": "my home",
+        "subTitle": "hey"
+      }
+    },
+    "date": "2023-09-30T14:51:20.758Z"
+  },
+  {
+    "_id": "651835f52a4a6a9265a53412",
+    "emergency": "hey",
+    "location": "my home",
+    "additional": "lol",
+    "callEmergency": "no",
+    "callAmbulance": "no",
+    "seriousness": "2",
+    "user": {
+      "name": "Daliah",
+      "email": "malihdalia@gmail.com",
+      "image": "https://lh3.googleusercontent.com/a/ACg8ocKuCZa_A0kp79mWEy0zEX-ow_Nd8zzt2s7DGGQVlwXF1cY=s96-c"
+    },
+    "pushPin": {
+      "center": {
+        "latitude": null,
+        "longitude": null
+      },
+      "options": {
+        "title": "my home",
+        "subTitle": "hey"
+      }
+    },
+    "date": "2023-09-30T14:51:33.610Z"
+  },
+  {
+    "_id": "651835f72a4a6a9265a53413",
+    "emergency": "hey",
+    "location": "my home",
+    "additional": "lol",
+    "callEmergency": "no",
+    "callAmbulance": "no",
+    "seriousness": "3",
+    "user": {
+      "name": "Daliah",
+      "email": "malihdalia@gmail.com",
+      "image": "https://lh3.googleusercontent.com/a/ACg8ocKuCZa_A0kp79mWEy0zEX-ow_Nd8zzt2s7DGGQVlwXF1cY=s96-c"
+    },
+    "pushPin": {
+      "center": {
+        "latitude": null,
+        "longitude": null
+      },
+      "options": {
+        "title": "my home",
+        "subTitle": "hey"
+      }
+    },
+    "date": "2023-09-30T14:51:35.743Z"
+  }
+] }) {
   const [pushPins, setpushPins] = useState([]);
   const [center, setCenter] = useState([]);
   const [isdisabled, setIsDisabled] = useState(true);
@@ -138,8 +383,7 @@ export default function Home({ incidents }) {
         <h1 className={styles.title}>
           Welcome to Geo Guard Squad
         </h1>
-        <DynamicBingMap pushPins={pushPins} height="80vh" viewOptions={{ center: center, mapTypeId: 'aerial', zoom: 19 }} bingMapsKey={process.env.NEXT_PUBLIC_API} />
-        
+        <BingMapsReact pushPins={pushPins} height="80vh" viewOptions={{ center: center, mapTypeId: 'aerial', zoom: 19 }} bingMapsKey={process.env.NEXT_PUBLIC_API} />
         <Box
           component="form"
           sx={{
@@ -321,25 +565,4 @@ export default function Home({ incidents }) {
       `}</style>
     </div>
   );
-}
-
-export async function getServerSideProps({ req, res }) {
-  try {
-    const client = await clientPromise;
-    const db = client.db("admin1");
-    const incidents = await db
-      .collection("incidentdata")
-      .find({})
-      .toArray();
-
-    res.setHeader(
-      'Cache-Control',
-      'no-cache, no-store, max-age=0, must-revalidate'
-    )
-    return {
-      props: { incidents: JSON.parse(JSON.stringify(incidents)) },
-    };
-  } catch (e) {
-      console.error(e);
-  }
 }
