@@ -319,7 +319,7 @@ export default function Home({ incidents }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps({ req, res }) {
   try {
     const client = await clientPromise;
     const db = client.db("admin1");
@@ -328,6 +328,10 @@ export async function getServerSideProps(context) {
       .find({})
       .toArray();
 
+    res.setHeader(
+      'Cache-Control',
+      'no-store, max-age=0, must-revalidate, no-cache'
+    )
     return {
       props: { incidents: JSON.parse(JSON.stringify(incidents)) },
     };
