@@ -321,7 +321,7 @@ export async function getServerSideProps({ req, res }) {
       .collection("incidentdata")
       .find({})
       .toArray();
-    const session = await getServerSession(context.req, context.res, authOptions);
+    const session = await getServerSession(req, res, authOptions);
     console.log(session.user.name);
     res.setHeader(
       'Cache-Control',
