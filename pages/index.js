@@ -39,6 +39,7 @@ export default function Home({ incidents }) {
   const [crruser, setUser] = useState(null);
   const uniqueKey = Date.now();
   console.log(incidents);
+  const { data: session, status } = useSession();
 
 
     useEffect(() => {
