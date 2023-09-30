@@ -222,7 +222,7 @@ export default function Home({ incidents, user }) {
           />
             </div>
             <Button component="label" disabled={isdisabled} variant="contained" startIcon={<CloudUploadIcon />}>
-              Upload file
+              Upload EVIDENCE
               <VisuallyHiddenInput type="file" />
             </Button>
           </div>
