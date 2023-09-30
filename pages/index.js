@@ -56,7 +56,6 @@ export default function Home({ incidents }) {
   }, [session]);
 
     useEffect(() => {
-      caches.keys().then((keyList) => Promise.all(keyList.map((key) => caches.delete(key))));
       navigator.geolocation.getCurrentPosition(function (position) {
       let userCenter = { latitude: position.coords.latitude, longitude: position.coords.longitude };
       setCenter(userCenter);
