@@ -1,6 +1,7 @@
 module.exports = {
     headers: () => [
         {
+            generateEtags: false,
             source: '/',
             headers: [
                 {
