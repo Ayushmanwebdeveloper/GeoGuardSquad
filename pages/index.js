@@ -15,9 +15,11 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import SendIcon from '@mui/icons-material/Send';
 import clientPromise from '../utils/database'
 import { useSession, getSession } from 'next-auth/react'
+import { getServerSession } from "next-auth/next"
 import Link from 'next/link';
 import { Alert, AlertTitle } from '@mui/material';
 import { signIn } from "next-auth/react"
+import { authOptions } from 'pages/api/auth/[...nextauth]'
 
 dotenv.config();
 
@@ -319,7 +321,8 @@ export async function getServerSideProps({ req, res }) {
       .collection("incidentdata")
       .find({})
       .toArray();
-
+    const session = await getServerSession(context.req, context.res, authOptions);
+    console.log(session.user.name);
     res.setHeader(
       'Cache-Control',
       'no-cache, no-store, max-age=0, must-revalidate'
