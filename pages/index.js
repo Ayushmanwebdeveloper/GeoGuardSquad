@@ -62,7 +62,7 @@ export default function Home({ incidents }) {
           center: incident?.pushPin?.center,
           options: {
             title: incident?.pushPin?.options?.title,
-            subTitle: 'Incident',
+            subTitle: incident?.pushPin?.options?.subTitle,
           },
         }
       }
@@ -112,6 +112,7 @@ export default function Home({ incidents }) {
         center: { latitude: parseFloat(sessionStorage.getItem('latitude')), longitude: parseFloat(sessionStorage.getItem('longitude')) },
         options: {
           title: incident.location,
+          subTitle: incident.emergency,
         },
       } }
     const res = await fetch('/api/createincidents', {
