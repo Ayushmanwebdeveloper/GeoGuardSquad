@@ -20,6 +20,7 @@ import Link from 'next/link';
 import { Alert, AlertTitle } from '@mui/material';
 import { signIn } from "next-auth/react"
 import { authOptions } from '/pages/api/auth/[...nextauth]'
+import { is } from 'core-js/core/object';
 
 dotenv.config();
 
@@ -37,13 +38,15 @@ const options = [
 export default function Home({ incidents, user }) {
   const [pushPins, setpushPins] = useState([]);
   const [center, setCenter] = useState([]);
-  const [isdisabled, setIsDisabled] = useState(true);
-  const [crruser, setUser] = useState(null);
+  const isdisabled= true;
+  const crruser = null;
   const uniqueKey = Date.now();
   console.log(incidents);
 
   if (user) {
     console.log(user);
+    isdisabled = false;
+    crruser = user;
   }
   
   useEffect(() => {
