@@ -59,9 +59,9 @@ export default function Home({ incidents }) {
       setCenter(userCenter);
       let dbpushPins = incidents.map(incident => {
         return {
-          center: incident.pushPin.center,
+          center: incident?.pushPin?.center,
           options: {
-            title: incident.pushPin.options.title,
+            title: incident?.pushPin?.options?.title,
           },
         }
       }

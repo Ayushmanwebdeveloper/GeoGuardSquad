@@ -42,6 +42,7 @@ function BingMapsReact(_ref) {
 
       if (pushpin instanceof Maps.Pushpin) {
         map.entities.removeAt(i);
+        break;
       }
     }
   } // add pushpins with infoboxes
