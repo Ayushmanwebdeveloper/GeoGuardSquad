@@ -87,7 +87,7 @@ export default function Home({ incidents }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
-    const incident = {
+    let incident = {
       emergency: data.get('emergency-text'),
       location: data.get('location-text'),
       additional: data.get('additional-info'),
