@@ -130,7 +130,7 @@ export default function Home({ incidents }) {
           onSubmit={handleSubmit}
         >
 
-         {!session && ( 
+         {isdisabled && ( 
             <Alert severity="info" sx={{textAlign:'left', marginTop:2}}>
               <AlertTitle>You need to be Logged in to Submit an incident</AlertTitle>
               Click here to login - <strong><Link href={`/api/auth/signin`} >Sign in with Google</Link></strong>
