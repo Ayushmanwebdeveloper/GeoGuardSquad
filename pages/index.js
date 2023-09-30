@@ -39,11 +39,8 @@ export default function Home({ incidents }) {
   const [crruser, setUser] = useState(null);
   const uniqueKey = Date.now();
   console.log(incidents);
-  const { data: session, status } = useSession()
-
-  if (status === "authenticated") {
-    console.log(session.user);
-  }
+  let user = fetch('/api/auth/session').then(resp => resp.json());
+  console.log(user);
 
 
     useEffect(() => {
