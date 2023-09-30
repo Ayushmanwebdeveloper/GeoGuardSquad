@@ -39,7 +39,6 @@ export default function Home({ incidents }) {
   const [crruser, setUser] = useState(null);
   const uniqueKey = Date.now();
   console.log(incidents);
-  let user = fetch('/api/auth/session').then(resp => resp.json().then(data => setUser(data.user)));
 
 
     useEffect(() => {
@@ -64,6 +63,8 @@ export default function Home({ incidents }) {
       };
       setpushPins(currentList => [...currentList, pushPin, ...dbpushPins]);
     });
+
+    let user = fetch('/api/auth/session').then(resp => resp.json().then(data => setUser(data.user)));
   }, []);
   
   const VisuallyHiddenInput = styled('input')({
