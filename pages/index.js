@@ -20,6 +20,9 @@ import Link from 'next/link';
 import { Alert, AlertTitle } from '@mui/material';
 import { signIn } from "next-auth/react"
 import { authOptions } from '/pages/api/auth/[...nextauth]';
+import Snackbar from '@mui/material/Snackbar';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
 
 dotenv.config();
 
@@ -83,6 +86,32 @@ export default function Home({ incidents, user }) {
     whiteSpace: 'nowrap',
     width: 1,
   });
+
+  const [open, setOpen] = useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+  const action = (
+    <React.Fragment>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
 
   if (pushPins.length === 0) {
     return <div>Loading...</div>;
@@ -226,9 +255,16 @@ export default function Home({ incidents, user }) {
               <VisuallyHiddenInput type="file" />
             </Button>
           </div>
-          <Button variant="contained" disabled={isdisabled} type="submit" endIcon={<SendIcon />} size='large' sx={{marginTop:3}}>
+          <Button variant="contained" disabled={isdisabled} type="submit" onClick={handleClick} endIcon={<SendIcon />} size='large' sx={{marginTop:3}}>
             Submit
           </Button>
+          <Snackbar
+            open={open}
+            autoHideDuration={6000}
+            onClose={handleClose}
+            message="Incident Submitted Successfully"
+            action={action}
+          />
         </Box>
         
       </main>
