@@ -178,6 +178,7 @@ export default function Home({ incidents, user }) {
             </Alert>)}
 
           <TextField
+            required
             id="emergency-text"
             name='emergency-text'
             label="What's the Emergency?"
@@ -187,9 +188,10 @@ export default function Home({ incidents, user }) {
             disabled={isdisabled}
           />
           <TextField
+            required
             id="location-text"
             name='location-text'
-            label="Where are you?"
+            label="Your exact location now?"
             multiline
             maxRows={4}
             sx={{ width: '45vw' }}
@@ -197,6 +199,7 @@ export default function Home({ incidents, user }) {
           />
           <br />
           <TextField
+            required
             id="additional-info"
             name='additional-info'
             label="Additional Information"
@@ -205,6 +208,7 @@ export default function Home({ incidents, user }) {
             disabled={isdisabled}
           />
           <TextField
+            required
             id="call-emergency"
             name='call-emergency'
             select
@@ -220,6 +224,7 @@ export default function Home({ incidents, user }) {
             ))}
           </TextField>
           <TextField
+            required
             id="call-amulance"
             name='call-amulance'
             select
@@ -239,6 +244,7 @@ export default function Home({ incidents, user }) {
               <Typography id="discrete-slider"  gutterBottom>Seriousness of the emergency ?</Typography>
           
           <Slider
+            required
             aria-label="Seriousness of the emergency ?"
             defaultValue={1}
             name='seriousness'
