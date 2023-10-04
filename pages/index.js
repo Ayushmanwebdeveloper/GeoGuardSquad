@@ -23,7 +23,6 @@ import { authOptions } from '/pages/api/auth/[...nextauth]';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import { set } from 'core-js/core/dict';
 
 dotenv.config();
 
