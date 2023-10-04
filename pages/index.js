@@ -88,6 +88,7 @@ export default function Home({ incidents, user }) {
   });
 
   const [open, setOpen] = useState(false);
+  const [openReqnotfilled, setOpenReqnotfilled] = useState(false);
 
   const handleClick = () => {
     setOpen(true);
@@ -120,6 +121,13 @@ export default function Home({ incidents, user }) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
+    if(!crruser){
+      return;
+    }
+    if( !data.get('emergency-text')|| !data.get('location-text')|| !data.get('additional-info')|| !data.get('call-emergency')|| !data.get('call-amulance')|| !data.get('seriousness')){
+      setOpenReqnotfilled(true);
+      return;
+    }
     let incident = {
       emergency: data.get('emergency-text'),
       location: data.get('location-text'),
@@ -270,6 +278,13 @@ export default function Home({ incidents, user }) {
             autoHideDuration={6000}
             onClose={handleClose}
             message="Incident Submitted Successfully"
+            action={action}
+          />
+          <Snackbar
+            open={openReqnotfilled}
+            autoHideDuration={6000}
+            onClose={handleClose}
+            message="Please fill all the required fields"
             action={action}
           />
         </Box>
