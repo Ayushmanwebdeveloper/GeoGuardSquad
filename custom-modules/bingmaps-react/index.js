@@ -204,7 +204,10 @@ function BingMapsReact(_ref) {
     ref: mapContainer,
     style: {
       height: height,
-      width: width
+      width: width,
+      borderRadius: "15px",
+      border: "2px solid #333",
+      boxShadow: "5px 5px 10px rgba(0, 0, 0, 0.2)"
     }
   });
 }
