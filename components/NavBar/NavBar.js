@@ -123,7 +123,7 @@ function NavBar({crruser}) {
                 textDecoration: 'none',
               }}
             >
-             MERN_TEMPLATE
+              Geo Guard Squad
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               
@@ -179,7 +179,7 @@ function NavBar({crruser}) {
     );
   }
   return (
-    <AppBar position="static" enableColorOnDark sx={{ backgroundColor: '#272727' }}>
+    <AppBar position="static" enableColorOnDark sx={{ backgroundColor: '#FFEFBA', width: '100vw' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <IntegrationInstructionsIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -198,7 +198,7 @@ function NavBar({crruser}) {
               textDecoration: 'none',
             }}
           >
-            <span id='logo'>MERN_TEMPLATE</span>
+            <span id='logo'>Geo Guard Squad</span>
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
