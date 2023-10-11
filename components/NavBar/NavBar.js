@@ -46,7 +46,7 @@ function NavBar({cuser}) {
       <AppBar position="static" sx={{ backgroundColor: '#FFEFBA', width:'100vw' }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <IntegrationInstructionsIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+            <IntegrationInstructionsIcon sx={{ color: 'black', display: { xs: 'none', md: 'flex' }, mr: 1 }} />
             <Typography
               variant="h6"
               noWrap
