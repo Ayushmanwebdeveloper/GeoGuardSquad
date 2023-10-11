@@ -18,7 +18,7 @@ const settings = ['Profile', 'Account', 'Products', 'Logout', 'Follow Me@LinkedI
 function NavBar({crruser}) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [user, setUser] = useState(crruser?.email);
+  const user=crruser;
   console.log(user);
   const [visible, setVisible] = useState(false);
   const logoutHandler = (props) => {
@@ -43,7 +43,7 @@ function NavBar({crruser}) {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-  if (user.email) {
+  if (user?.email) {
     return (
       <AppBar position="static" enableColorOnDark sx={{ backgroundColor: '#FFEFBA', width:'100vw' }}>
         <Container maxWidth="xl">
