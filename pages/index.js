@@ -23,6 +23,7 @@ import { authOptions } from '/pages/api/auth/[...nextauth]';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import NavBar from '../components/NavBar/NavBar';
 
 dotenv.config();
 
@@ -158,6 +159,7 @@ export default function Home({ incidents, user }) {
   
   return (
     <div className={styles.container}>
+      <NavBar user={crruser} />
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />

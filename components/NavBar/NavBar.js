@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,28 +11,22 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Link from '@mui/material/Link';
-import { USER_SERVER } from "../../../Config";
-import { useSelector } from "react-redux";
 import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
 import IntegrationInstructionsIcon from '@mui/icons-material/IntegrationInstructions';
-import './NavBar.css';
 const settings = ['Profile', 'Account', 'Products', 'Logout', 'Follow Me@LinkedIn'];
 
-function NavBar() {
+function NavBar({crruser}) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const user = useSelector((state) => state.user);
+  const [user, setUser] = useState(crruser?.email);
   const [visible, setVisible] = useState(false);
   const logoutHandler = (props) => {
-    axios.get(`${USER_SERVER}/logout`).then((response) => {
-      if (response.status === 200) {
-        window.localStorage.removeItem("userId");
-        window.localStorage.removeItem("remember");
-        
-      } else {
-        alert("Log Out Failed");
-      }
-    });
+    fetch('/api/auth/signout', {
+      method: 'GET'
+    })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -49,7 +42,7 @@ function NavBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-  if (user.userData && user.userData.isAuth) {
+  if (user) {
     return (
       <AppBar position="static" enableColorOnDark sx={{ backgroundColor: '#272727' }}>
         <Container maxWidth="xl">
