@@ -18,7 +18,7 @@ const settings = ['Profile', 'Account', 'Products', 'Logout', 'Follow Me@LinkedI
 function NavBar({cuser}) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const user = cuser
+  let user = cuser
   const logoutHandler = (props) => {
     fetch('/api/auth/signout', {
       method: 'GET'
