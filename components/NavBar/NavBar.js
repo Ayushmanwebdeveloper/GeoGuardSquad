@@ -44,7 +44,7 @@ function NavBar({crruser}) {
   };
   if (user) {
     return (
-      <AppBar position="static" enableColorOnDark sx={{ backgroundColor: '#272727', width:'100vw' }}>
+      <AppBar position="static" enableColorOnDark sx={{ backgroundColor: '#FFEFBA', width:'100vw' }}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <IntegrationInstructionsIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
