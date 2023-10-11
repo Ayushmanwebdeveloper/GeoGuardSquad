@@ -18,8 +18,7 @@ const settings = ['Profile', 'Account', 'Products', 'Logout', 'Follow Me@LinkedI
 function NavBar({crruser}) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const user=crruser;
-  console.log(user);
+  const [user, setUser] = useState(crruser);
   const [visible, setVisible] = useState(false);
   const logoutHandler = (props) => {
     fetch('/api/auth/signout', {
@@ -43,7 +42,9 @@ function NavBar({crruser}) {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
+  useEffect(() => { 
+    setUser(crruser);
+  }, [crruser]);
 
     return (
       <AppBar position="static" enableColorOnDark sx={{ backgroundColor: '#FFEFBA', width:'100vw' }}>
