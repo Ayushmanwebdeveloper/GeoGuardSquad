@@ -272,14 +272,14 @@ function NavBar({crruser}) {
               Products
               </Button>
               <Button
-                href="/login"
+                href="/api/auth/login"
                 key="Products"
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               > LOG IN
               </Button>
               <Button
-                href="register"
+                href="/api/auth/register"
                 key="Products"
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
