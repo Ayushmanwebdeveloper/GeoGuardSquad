@@ -43,7 +43,7 @@ function NavBar({crruser}) {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-  if (user) {
+  if (user.email) {
     return (
       <AppBar position="static" enableColorOnDark sx={{ backgroundColor: '#FFEFBA', width:'100vw' }}>
         <Container maxWidth="xl">
