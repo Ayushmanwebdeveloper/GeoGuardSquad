@@ -147,7 +147,7 @@ function NavBar({crruser}) {
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <SettingsApplicationsIcon sx={{color:'white',display: { xs: 'none', md: 'flex' }, mr: 1,fontSize: 40 }} />
+                <SettingsApplicationsIcon sx={{color:'black',display: { xs: 'none', md: 'flex' }, mr: 1,fontSize: 40 }} />
                 </IconButton>
               </Tooltip>
               <Menu
@@ -284,7 +284,7 @@ function NavBar({crruser}) {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              <SettingsApplicationsIcon sx={{color:'white',display: { xs: 'none', md: 'flex' }, mr: 1,fontSize: 40 }} />
+              <SettingsApplicationsIcon sx={{color:'black',display: { xs: 'none', md: 'flex' }, mr: 1,fontSize: 40 }} />
               </IconButton>
             </Tooltip>
             <Menu
