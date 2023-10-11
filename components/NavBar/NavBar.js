@@ -15,11 +15,10 @@ import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
 import IntegrationInstructionsIcon from '@mui/icons-material/IntegrationInstructions';
 const settings = ['Profile', 'Account', 'Products', 'Logout', 'Follow Me@LinkedIn'];
 
-function NavBar({user}) {
+function NavBar({cuser}) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [user, setUser] = useState(user);
-  const [visible, setVisible] = useState(false);
+  const user = cuser
   const logoutHandler = (props) => {
     fetch('/api/auth/signout', {
       method: 'GET'
@@ -42,9 +41,6 @@ function NavBar({user}) {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-  useEffect(() => { 
-    setUser(crruser);
-  }, [crruser]);
 
     return (
       <AppBar position="static" sx={{ backgroundColor: '#FFEFBA', width:'100vw' }}>

@@ -159,7 +159,7 @@ export default function Home({ incidents, user }) {
   
   return (
     <div className={styles.container}>
-      <NavBar user={crruser} />
+      <NavBar cuser={crruser} />
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
