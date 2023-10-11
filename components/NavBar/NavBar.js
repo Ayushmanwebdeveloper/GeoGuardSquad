@@ -19,6 +19,7 @@ function NavBar({crruser}) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [user, setUser] = useState(crruser?.email);
+  console.log(user);
   const [visible, setVisible] = useState(false);
   const logoutHandler = (props) => {
     fetch('/api/auth/signout', {
