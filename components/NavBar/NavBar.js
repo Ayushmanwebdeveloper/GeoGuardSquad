@@ -43,6 +43,7 @@ function NavBar({crruser}) {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  console.log(user);
   console.log(user?.email);
   if (user?.email) {
     return (
