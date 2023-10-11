@@ -130,7 +130,7 @@ function NavBar({crruser}) {
                 <Button
                   key="Products"
                   onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: 'white', display: 'block' }}
+                  sx={{ my: 2, color: 'black', display: 'block' }}
                 >
                 Products
                 </Button>
@@ -138,7 +138,7 @@ function NavBar({crruser}) {
                   href="/login"
                   key="Products"
                   onClick={logoutHandler}
-                  sx={{ my: 2, color: 'white', display: 'block' }}
+                  sx={{ my: 2, color: 'black', display: 'block' }}
                 > LOG OUT
                 </Button>
               
@@ -267,24 +267,16 @@ function NavBar({crruser}) {
               <Button
                 key="Products"
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, color: 'black', display: 'block' }}
               >
               Products
               </Button>
               <Button
-                href="/api/auth/login"
+                href="/api/auth/signin"
                 key="Products"
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, color: 'black', display: 'block' }}
               > LOG IN
-              </Button>
-              <Button
-                href="/api/auth/register"
-                key="Products"
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-              SIGN UP
               </Button>
             
           </Box>
