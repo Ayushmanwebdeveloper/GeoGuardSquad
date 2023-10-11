@@ -15,10 +15,10 @@ import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
 import IntegrationInstructionsIcon from '@mui/icons-material/IntegrationInstructions';
 const settings = ['Profile', 'Account', 'Products', 'Logout', 'Follow Me@LinkedIn'];
 
-function NavBar({crruser}) {
+function NavBar({user}) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [user, setUser] = useState(crruser);
+  const [user, setUser] = useState(user);
   const [visible, setVisible] = useState(false);
   const logoutHandler = (props) => {
     fetch('/api/auth/signout', {
