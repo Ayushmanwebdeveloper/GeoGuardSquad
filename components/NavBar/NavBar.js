@@ -136,14 +136,14 @@ function NavBar({crruser}) {
                 Products
                 </Button>
 
-                user.email && (
+              {  user.email && (
                 <Button
                   key="LogOut"
                   onClick={logoutHandler}
                   sx={{ my: 2, color: 'black', display: 'block' }}
                 > LOG OUT
                 </Button>
-                )
+                ) }
                 <Button
                   key="LogIn"
                   href="/api/auth/signin"
