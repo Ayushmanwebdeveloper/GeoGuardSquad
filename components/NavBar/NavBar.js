@@ -235,10 +235,10 @@ function NavBar({crruser}) {
                   <Typography textAlign="center">Products</Typography>
                 </MenuItem></Link>
 
-                <Link href="/login">  <MenuItem key='page' onClick={handleCloseNavMenu}>
+                <Link href="/api/auth/login">  <MenuItem key='page' onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">LogIn</Typography>
                 </MenuItem></Link>
-                <Link href="/register">  <MenuItem key='page' onClick={handleCloseNavMenu}>
+                <Link href="/api/auth/register">  <MenuItem key='page' onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">SignUp</Typography>
                 </MenuItem></Link>
             </Menu>
