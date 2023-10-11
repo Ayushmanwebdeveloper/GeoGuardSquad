@@ -58,7 +58,7 @@ function NavBar({cuser}) {
                 fontFamily: 'monospace',
                 fontWeight: 700,
                 letterSpacing: '.3rem',
-                color: 'inherit',
+                color: 'black',
                 textDecoration: 'none',
               }}
             >
@@ -72,7 +72,7 @@ function NavBar({cuser}) {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleOpenNavMenu}
-                color="inherit"
+                color="black"
               >
                 <MenuIcon />
               </IconButton>
@@ -117,7 +117,7 @@ function NavBar({cuser}) {
                 fontFamily: 'monospace',
                 fontWeight: 700,
                 letterSpacing: '.3rem',
-                color: 'inherit',
+                color: 'black',
                 textDecoration: 'none',
               }}
             >
@@ -133,14 +133,14 @@ function NavBar({cuser}) {
                 Products
                 </Button>
 
-              {  user?.email && (
+              {  user?.email ? (
                 <Button
                   key="LogOut"
                   onClick={logoutHandler}
                   sx={{ my: 2, color: 'black', display: 'block' }}
                 > LOG OUT
                 </Button>
-                ) }
+                ) :(
                 <Button
                   key="LogIn"
                   href="/api/auth/signin"
@@ -148,6 +148,8 @@ function NavBar({cuser}) {
                 >
                 LOG IN
                 </Button>
+                )
+              }
 
                 
               
