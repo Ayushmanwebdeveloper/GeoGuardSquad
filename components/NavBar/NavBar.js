@@ -19,7 +19,7 @@ function NavBar({cuser}) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   let user = cuser
-  const logoutHandler = (props) => {
+  const logoutHandler = () => {
     fetch('/api/auth/signout', {
       method: 'GET'
     })
@@ -99,7 +99,7 @@ function NavBar({cuser}) {
                     <Typography textAlign="center">Products</Typography>
                   </MenuItem></Link>
   
-                  <Link href="/login">  <MenuItem key='page' onClick={logoutHandler}>
+                  <Link>  <MenuItem key='page' onClick={logoutHandler}>
                     <Typography textAlign="center">LogOut</Typography>
                   </MenuItem></Link>
               </Menu>
@@ -136,7 +136,7 @@ function NavBar({cuser}) {
               {  user?.email ? (
                 <Button
                   key="LogOut"
-                  onClick={logoutHandler}
+                  href="/api/auth/signout"
                   sx={{ my: 2, color: 'black', display: 'block' }}
                 > LOG OUT
                 </Button>
