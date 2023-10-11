@@ -179,7 +179,7 @@ function NavBar({crruser}) {
     );
   }
   return (
-    <AppBar position="static" enableColorOnDark sx={{ backgroundColor: '#FFEFBA', width: '100vw', coloe:'black' }}>
+    <AppBar position="static" sx={{ backgroundColor: '#FFEFBA', width: '100vw', color:'black' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <IntegrationInstructionsIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
