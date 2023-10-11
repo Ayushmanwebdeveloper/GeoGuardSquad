@@ -43,9 +43,8 @@ function NavBar({crruser}) {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-  console.log(user);
-  console.log(user?.email);
-  if (user?.email) {
+
+
     return (
       <AppBar position="static" enableColorOnDark sx={{ backgroundColor: '#FFEFBA', width:'100vw' }}>
         <Container maxWidth="xl">
@@ -136,13 +135,24 @@ function NavBar({crruser}) {
                 >
                 Products
                 </Button>
+
+                user.email && (
                 <Button
-                  href="/login"
-                  key="Products"
+                  key="LogOut"
                   onClick={logoutHandler}
                   sx={{ my: 2, color: 'black', display: 'block' }}
                 > LOG OUT
                 </Button>
+                )
+                <Button
+                  key="LogIn"
+                  href="/api/auth/signin"
+                  sx={{ my: 2, color: 'black', display: 'block' }}
+                >
+                LOG IN
+                </Button>
+
+                
               
             </Box>
   
@@ -180,141 +190,5 @@ function NavBar({crruser}) {
       </AppBar>
     );
   }
-  return (
-    <AppBar position="static" sx={{ backgroundColor: '#FFEFBA', width: '100vw', color:'black' }}>
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <IntegrationInstructionsIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            <span id='logo'>Geo Guard Squad</span>
-          </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
-              
-              <Link href="#"> <MenuItem key='page' onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">Products</Typography>
-                </MenuItem></Link>
-
-                <Link href="/api/auth/login">  <MenuItem key='page' onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">LogIn</Typography>
-                </MenuItem></Link>
-                <Link href="/api/auth/register">  <MenuItem key='page' onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">SignUp</Typography>
-                </MenuItem></Link>
-            </Menu>
-          </Box>
-          {/* <IntegrationInstructionsIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            Geo Guard Squad
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            
-              <Button
-                key="Products"
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'black', display: 'block' }}
-              >
-              Products
-              </Button>
-              <Button
-                href="/api/auth/signin"
-                key="Products"
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'black', display: 'block' }}
-              > LOG IN
-              </Button>
-            
-          </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-              <SettingsApplicationsIcon sx={{color:'black',display: { xs: 'none', md: 'flex' }, mr: 1,fontSize: 40 }} />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
-  );
-}
 export default NavBar;
