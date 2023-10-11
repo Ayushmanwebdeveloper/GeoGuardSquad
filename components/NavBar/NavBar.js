@@ -136,7 +136,7 @@ function NavBar({crruser}) {
                 Products
                 </Button>
 
-              {  user.email && (
+              {  user?.email && (
                 <Button
                   key="LogOut"
                   onClick={logoutHandler}
