@@ -14,4 +14,4 @@ Geo-Guard Emergency App is a full-stack application designed to provide swift as
 
 5. **Web Push Notifications:** The app will send web push notifications to alert users about emergencies in their vicinity, enabling them to offer help or seek assistance quickly.
 
-6. **Future Expansion:** We are considering implementing email notifications using AWS or Firebase in the future to further enhance communication and response during emergencies.
+6. **Future Expansion:** I'm considering implementing email notifications using AWS or Firebase in the future to further enhance communication and response during emergencies.
