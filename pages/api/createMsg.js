@@ -4,13 +4,14 @@ export default async function handler(req, res) {
         const authToken = process.env.TWILIO_AUTH_TOKEN;
         const clientMsg = require('twilio')(accountSid, authToken);
         console.log("cm" + clientMsg);
-        clientMsg.messages
+        let result=clientMsg.messages
             .create({
                 from: 'whatsapp:+14155238886',
                 body: 'Your incident has been submitted successfully',
-                to: 'whatsapp:+916006157825'
+                to: 'whatsapp:+918103529943'
             })
             .then(message => console.log(message.sid));
+        res.status(204).send(result);
     }
     catch (e) {
         console.error(e);
