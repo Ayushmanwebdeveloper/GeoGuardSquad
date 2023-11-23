@@ -124,7 +124,10 @@ export default function Home({ incidents, user }) {
     event.preventDefault();
 
     await fetch('/api/createMsg', {
-      body: parseFloat(sessionStorage.getItem('latitude'))+parseFloat(sessionStorage.getItem('longitude')),
+      body: String(sessionStorage.getItem('latitude'))+String(sessionStorage.getItem('longitude')),
+      headers: {
+        'Content-Type': 'text/plain'
+      },
       method: 'POST'
     })
 
