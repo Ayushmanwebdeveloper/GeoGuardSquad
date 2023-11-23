@@ -155,6 +155,9 @@ export default function Home({ incidents, user }) {
       },
       method: 'POST'
     }).then(resp => resp.json());
+    await fetch('/api/createMsg', {
+      method: 'GET'
+    }).then(resp => resp.json());
   };
   
   return (
