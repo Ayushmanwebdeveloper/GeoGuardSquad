@@ -92,7 +92,6 @@ export default function Home({ incidents, user }) {
   const [openReqnotfilled, setOpenReqnotfilled] = useState(false);
 
   const handleClick = () => {
-    fetch('/api/createMsg');
     setOpen(true);
   };
 
