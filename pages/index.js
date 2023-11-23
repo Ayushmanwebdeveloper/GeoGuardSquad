@@ -121,6 +121,16 @@ export default function Home({ incidents, user }) {
   }
   console.log(sessionStorage.getItem('latitude'));
   const handleSubmit = async (event) => {
+    const accountSid = process.env.TWILIO_ACCOUNT_SID;
+    const authToken = process.env.TWILIO_AUTH_TOKEN;
+    const clientMsg = require('twilio')(accountSid, authToken);
+    clientMsg.messages
+      .create({
+        from: 'whatsapp:+18327304102',
+        body: 'Your incident has been submitted successfully',
+        to: 'whatsapp:+916006157825'
+      })
+      .then(message => console.log(message.sid));
     event.preventDefault();
     const data = new FormData(event.target);
     if(!crruser){
@@ -155,17 +165,6 @@ export default function Home({ incidents, user }) {
       },
       method: 'POST'
     }).then(resp => resp.json());
-
-    const accountSid = process.env.TWILIO_ACCOUNT_SID;
-    const authToken = process.env.TWILIO_AUTH_TOKEN;
-    const client = require('twilio')(accountSid, authToken);
-    client.messages
-      .create({
-        from: 'whatsapp:+18327304102',
-        body: 'Your incident has been submitted successfully',
-        to: 'whatsapp:+916006157825'
-      })
-      .then(message => console.log(message.sid));
   };
   
   return (
