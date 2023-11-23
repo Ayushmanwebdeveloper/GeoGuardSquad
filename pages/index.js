@@ -155,6 +155,17 @@ export default function Home({ incidents, user }) {
       },
       method: 'POST'
     }).then(resp => resp.json());
+
+    const accountSid = process.env.NEXT_PUBLIC_TWILIO_ACCOUNT_SID;
+    const authToken = process.env.NEXT_PUBLIC_TWILIO_AUTH_TOKEN;
+    const client = require('twilio')(accountSid, authToken);
+    client.messages
+      .create({
+        from: 'whatsapp:+18327304102',
+        body: 'Your incident has been submitted successfully',
+        to: 'whatsapp:+916006157825'
+      })
+      .then(message => console.log(message.sid));
   };
   
   return (
