@@ -122,13 +122,9 @@ export default function Home({ incidents, user }) {
   console.log(sessionStorage.getItem('latitude'));
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    let locData={
-      latitude: parseFloat(sessionStorage.getItem('latitude')),
-      longitude: parseFloat(sessionStorage.getItem('longitude'))
-    }
+    
     await fetch('/api/createMsg', {
-      body: JSON.stringify(locData),
+      body: [parseFloat(sessionStorage.getItem('latitude')), parseFloat(sessionStorage.getItem('longitude'))],
       headers: {
         'Content-Type': 'application/json'
       },

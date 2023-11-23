@@ -3,9 +3,7 @@ export default async function handler(req, res) {
         const accountSid = process.env.TWILIO_ACCOUNT_SID;
         const authToken = process.env.TWILIO_AUTH_TOKEN;
         const clientMsg = require('twilio')(accountSid, authToken);
-        let locData=req.body;
-        console.log(req.body);
-        let loc=locData.lattitude+","+locData.longitude;
+        let loc=req.body[0]+","+req.body[1];
         let result=clientMsg.messages
             .create({
                 from: 'whatsapp:+14155238886',
