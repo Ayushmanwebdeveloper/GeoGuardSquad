@@ -4,7 +4,7 @@ export default async function handler(req, res) {
         const authToken = process.env.TWILIO_AUTH_TOKEN;
         const clientMsg = require('twilio')(accountSid, authToken);
         console.log("cm" + clientMsg);
-        let locData=JSON.parse(locData);
+        let locData=JSON.parse(req.body);
         console.log("loc" + locData);
         let loc=locData.lattitude+","+locData.longitude;
         let result=clientMsg.messages
