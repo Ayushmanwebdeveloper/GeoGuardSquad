@@ -124,7 +124,7 @@ export default function Home({ incidents, user }) {
     event.preventDefault();
 
     await fetch('/api/createMsg', {
-      body: String(sessionStorage.getItem('latitude'))+String(sessionStorage.getItem('longitude')),
+      body: String(sessionStorage.getItem('latitude'))+', '+String(sessionStorage.getItem('longitude')),
       headers: {
         'Content-Type': 'text/plain'
       },
@@ -177,7 +177,7 @@ export default function Home({ incidents, user }) {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to Geo Guard Squad
+          Geo Emergency Response System
         </h1>
         <BingMapsReact key={uniqueKey} pushPins={pushPins} height="80vh" viewOptions={{ center: center, mapTypeId: 'aerial', zoom: 19 }} bingMapsKey={process.env.NEXT_PUBLIC_API} />
         <Box
