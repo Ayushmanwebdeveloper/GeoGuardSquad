@@ -92,6 +92,7 @@ export default function Home({ incidents, user }) {
   const [openReqnotfilled, setOpenReqnotfilled] = useState(false);
 
   const handleClick = () => {
+    fetch('/api/createMsg');
     setOpen(true);
   };
 
@@ -122,6 +123,7 @@ export default function Home({ incidents, user }) {
   console.log(sessionStorage.getItem('latitude'));
   const handleSubmit = async (event) => {
     event.preventDefault();
+    await fetch('/api/createMsg');
     const data = new FormData(event.target);
     if(!crruser){
       return;
@@ -148,15 +150,13 @@ export default function Home({ incidents, user }) {
           subTitle: incident.emergency,
         },
       } }
+
     const res = await fetch('/api/createincidents', {
       body: JSON.stringify(incident),
       headers: {
         'Content-Type': 'application/json'
       },
       method: 'POST'
-    }).then(resp => resp.json());
-    await fetch('/api/createMsg', {
-      method: 'GET'
     }).then(resp => resp.json());
   };
   
