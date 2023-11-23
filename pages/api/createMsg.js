@@ -8,7 +8,7 @@ export default async function handler(req, res) {
             .create({
                 from: 'whatsapp:+14155238886',
                 body: 'Your incident has been submitted successfully',
-                to: 'whatsapp:+916006157825'
+                to: 'whatsapp:+916006188367'
             })
             .then(message => console.log(message.sid));
         res.status(204).send(result);
