@@ -129,6 +129,10 @@ export default function Home({ incidents, user }) {
     }
     await fetch('/api/createMsg', {
       body: JSON.stringify(locData),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST'
     })
 
     const data = new FormData(event.target);
