@@ -124,6 +124,7 @@ export default function Home({ incidents, user }) {
     const accountSid = process.env.TWILIO_ACCOUNT_SID;
     const authToken = process.env.TWILIO_AUTH_TOKEN;
     const clientMsg = require('twilio')(accountSid, authToken);
+    console.log("cm"+clientMsg);
     clientMsg.messages
       .create({
         from: 'whatsapp:+18327304102',
