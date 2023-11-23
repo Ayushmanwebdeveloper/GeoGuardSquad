@@ -4,6 +4,7 @@ export default async function handler(req, res) {
         const authToken = process.env.TWILIO_AUTH_TOKEN;
         const clientMsg = require('twilio')(accountSid, authToken);
         let loc=req.body;
+        console.log(req.body);
         let result=clientMsg.messages
             .create({
                 from: 'whatsapp:+14155238886',
